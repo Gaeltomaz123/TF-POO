@@ -9,7 +9,7 @@ public class CriarTrem extends JPanel {
         setPreferredSize(new Dimension(400, 575));
         setLayout(new GridBagLayout());
 
-        ImageIcon icon = new ImageIcon("TestesPOO\\teste\\src\\main\\java\\com\\teste\\Images\\TremIcon.png");
+        ImageIcon icon = new ImageIcon("TFPOO\\src\\main\\java\\com\\teste\\Images\\TremIcon.png");
         JLabel labelImagem = new JLabel(icon);
         labelImagem.setHorizontalAlignment(SwingConstants.CENTER);
 

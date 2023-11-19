@@ -10,7 +10,7 @@ public class TransicaoTelas extends JFrame {
     private CardLayout cardLayout;
 
     public TransicaoTelas() {
-        ImageIcon icon = new ImageIcon("TestesPOO\\teste\\src\\main\\java\\com\\teste\\Images\\TremBase.png");
+        ImageIcon icon = new ImageIcon("TFPOO\\src\\main\\java\\com\\teste\\Images\\TremBase.png");
         setIconImage(icon.getImage());
 
         setTitle("Gerenciador de Trens");

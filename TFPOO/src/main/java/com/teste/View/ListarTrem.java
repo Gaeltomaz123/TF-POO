@@ -2,26 +2,47 @@ package com.teste.View;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import com.teste.Model.Carro;
+import com.teste.Model.Composicao;
+import com.teste.Model.Locomotiva;
+import com.teste.Model.Vagao;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class ListarTrem extends JPanel {
     private int trensDeletados = 0; // Variável para contar os trens deletados
-    private int quantidadeTrens = 20; // getQtdTrens;
+
+    private static ArrayList<Locomotiva> arrayLocomotivas = new ArrayList<Locomotiva>();
+    private static ArrayList<Vagao> arrayVagao = new ArrayList<Vagao>();
+    private static ArrayList<Composicao> arrayComposicao = new ArrayList<Composicao>();
 
     public ListarTrem() {
-        setLayout(new BorderLayout()); // BorderLayout para o JScrollPane
 
+        for (int i = 0; i < 6; i++) {
+            arrayVagao.add(new Vagao(i, 200, null));
+        }
+        for (int i = 0; i < 6; i++) {
+            arrayLocomotivas.add(new Locomotiva(i, 1000, 10, null));
+        }
+        for (int i = 0; i < 5; i++) {
+            ArrayList<Carro> carro = new ArrayList<Carro>();
+            carro.add(arrayLocomotivas.get(i));
+            arrayComposicao.add(new Composicao(i, carro));
+        }
+
+        setLayout(new BorderLayout()); // BorderLayout para o JScrollPane
         JPanel contentPanel = new JPanel(new GridBagLayout()); // Painel para o conteúdo com GridBagLayout
         contentPanel.setBackground(new Color(63, 55, 55));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NORTH;
         gbc.gridx = 0;
         gbc.gridy = 0;
-
         // Aqui você pode ter um loop para adicionar contêineres para cada trem
-        for (int i = 1; i <= quantidadeTrens /* NUMERO DE TRENS */; i++) {
+        for (int i = 0; i < arrayComposicao.size()/* NUMERO DE TRENS */; i++) {
             JPanel containerTrem = new JPanel(new FlowLayout(FlowLayout.LEADING));
             containerTrem.setMinimumSize(new Dimension(900, 45));
             containerTrem.setPreferredSize(new Dimension(900, 45));
@@ -35,9 +56,9 @@ public class ListarTrem extends JPanel {
             innerPanel.setMinimumSize(new Dimension(800, 40));
 
             // Valores do trem (simulação)
-            int idTrem = i;
-            int numVagoes = 3; // Obtenha o número de vagões do trem do seu programa
-            int numLocomotivas = 4; // Obtenha o número de locomotivas do trem do seu programa
+            int idTrem = arrayComposicao.get(i).getidComposicao();
+            int numVagoes = arrayComposicao.get(i).getQtdVagao(); // Obtenha o número de vagões do trem do seu programa
+            int numLocomotivas = arrayComposicao.get(i).getQtdLocomotivas(); // Obtenha o número de locomotivas do trem do seu programa
 
             // Crie os componentes para o trem
             JLabel labelID = new JLabel("ID Trem: " + idTrem);
@@ -45,8 +66,7 @@ public class ListarTrem extends JPanel {
             JLabel labelLocomotivas = new JLabel("Locomotivas: " + numLocomotivas);
 
             // Crie a imagem da lixeira (simulação)
-            ImageIcon lixeiraIcon = new ImageIcon(
-                    "TestesPOO\\teste\\src\\main\\java\\com\\teste\\Images\\IconLixeira.png");
+            ImageIcon lixeiraIcon = new ImageIcon("TFPOO\\src\\main\\java\\com\\teste\\Images\\IconLixeira.png");
             JLabel labelLixeira = new JLabel(lixeiraIcon);
 
             labelLixeira.addMouseListener(new MouseAdapter() {
@@ -58,7 +78,7 @@ public class ListarTrem extends JPanel {
                     contentPanel.revalidate(); // Revalida o layout do contentPanel
                     revalidate(); // Atualiza o layout do ListarTrem
                     repaint(); // Redesenha o painel
-                    if (getTrensDeletados() >= quantidadeTrens) {
+                    if (getTrensDeletados() >= arrayComposicao.size()) {
                         JLabel mensagem = new JLabel("Não há mais trens disponíveis");
                         mensagem.setHorizontalAlignment(JLabel.CENTER);
                         mensagem.setForeground(Color.RED);
