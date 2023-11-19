@@ -1,7 +1,9 @@
 package com.teste;
 
+import com.teste.View.TransicaoTelas;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new TransicaoTelas();
     }
 }
