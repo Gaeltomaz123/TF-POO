@@ -34,15 +34,15 @@ public class ListarTrem extends JPanel {
             arrayComposicao.add(new Composicao(i, carro));
         }
 
-        setLayout(new BorderLayout()); // BorderLayout para o JScrollPane
-        JPanel contentPanel = new JPanel(new GridBagLayout()); // Painel para o conteúdo com GridBagLayout
+        setLayout(new BorderLayout());
+        JPanel contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setBackground(new Color(63, 55, 55));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NORTH;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        // Aqui você pode ter um loop para adicionar contêineres para cada trem
-        for (int i = 0; i < arrayComposicao.size()/* NUMERO DE TRENS */; i++) {
+
+        for (int i = 0; i < arrayComposicao.size(); i++) {
             JPanel containerTrem = new JPanel(new FlowLayout(FlowLayout.LEADING));
             containerTrem.setMinimumSize(new Dimension(900, 45));
             containerTrem.setPreferredSize(new Dimension(900, 45));
@@ -51,14 +51,14 @@ public class ListarTrem extends JPanel {
 
             // Cria um novo JPanel para conter os componentes
             JPanel innerPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-            innerPanel.setPreferredSize(new Dimension(800, 45)); // Define o tamanho para 900x30
+            innerPanel.setPreferredSize(new Dimension(800, 45));
             innerPanel.setMaximumSize(new Dimension(800, 40));
             innerPanel.setMinimumSize(new Dimension(800, 40));
 
             // Valores do trem (simulação)
             int idTrem = arrayComposicao.get(i).getidComposicao();
-            int numVagoes = arrayComposicao.get(i).getQtdVagao(); // Obtenha o número de vagões do trem do seu programa
-            int numLocomotivas = arrayComposicao.get(i).getQtdLocomotivas(); // Obtenha o número de locomotivas do trem do seu programa
+            int numVagoes = arrayComposicao.get(i).getQtdVagao(); 
+            int numLocomotivas = arrayComposicao.get(i).getQtdLocomotivas(); 
 
             // Crie os componentes para o trem
             JLabel labelID = new JLabel("ID Trem: " + idTrem);
