@@ -63,15 +63,15 @@ public class EditarTrem extends JPanel {
         gbc.gridy++;
         add(botaoAdicionarLocomotiva, gbc);
 
-        JButton botatoAdicionarVagao = new JButton("Adicionar vagão");
-        botatoAdicionarVagao.setPreferredSize(new Dimension(200, 35));
-        botatoAdicionarVagao.setBorderPainted(false);
-        botatoAdicionarVagao.setFocusPainted(false);
-        botatoAdicionarVagao.setFont(font);
-        botatoAdicionarVagao.setForeground(Color.WHITE);
-        botatoAdicionarVagao.setBackground(new Color(99, 98, 98));
+        JButton botaoAdicionarVagao = new JButton("Adicionar vagão");
+        botaoAdicionarVagao.setPreferredSize(new Dimension(200, 35));
+        botaoAdicionarVagao.setBorderPainted(false);
+        botaoAdicionarVagao.setFocusPainted(false);
+        botaoAdicionarVagao.setFont(font);
+        botaoAdicionarVagao.setForeground(Color.WHITE);
+        botaoAdicionarVagao.setBackground(new Color(99, 98, 98));
         gbc.gridy++;
-        add(botatoAdicionarVagao, gbc);
+        add(botaoAdicionarVagao, gbc);
 
         gbc.gridy++;
         JLabel labelDis = new JLabel("Disposição:");
@@ -88,6 +88,7 @@ public class EditarTrem extends JPanel {
         add(scrollPane, gbc);
 
         botaoPesquisar.addActionListener(new ActionListener() {
+            //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
             public void actionPerformed(ActionEvent e) {
                 boolean existeNoArray = false;
                 int posicao = -1;
@@ -103,12 +104,19 @@ public class EditarTrem extends JPanel {
                     }
                 }
                 if(existeNoArray == false){
-                    JOptionPane.showMessageDialog(labelID, "ERRO: Esse ID não está contido!");
+                    JOptionPane.showMessageDialog(botaoAdicionarVagao, "ERRO: Esse ID não está contido!");
                 }else{
                     textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao).toString2(listarTrem.getArrayComposicao(),posicao));
-                    JOptionPane.showMessageDialog(labelID, "O id foi encontrado!");
+                    JOptionPane.showMessageDialog(botaoAdicionarVagao, "O id foi encontrado!");
                 }
-                //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
+
+            }
+            
+        });
+
+        botaoAdicionarLocomotiva.addActionListener(new ActionListener() {
+            //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
+            public void actionPerformed(ActionEvent e) {
             }
         });
         JButton botaoRemoverUltimo = new JButton("Remover último componente");
