@@ -3,8 +3,10 @@
     import javax.swing.*;
 
     import com.teste.Model.Composicao;
+import com.teste.Model.Locomotiva;
+import com.teste.Model.Vagao;
 
-    import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;
     import java.awt.event.ActionListener;
     import java.awt.*;
     import java.util.ArrayList;
@@ -160,6 +162,34 @@
             botaoRemoverUltimo.setFont(font);
             botaoRemoverUltimo.setForeground(Color.WHITE);
             botaoRemoverUltimo.setBackground(new Color(244, 24, 18));
+            botaoRemoverUltimo.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {  
+                ArrayList<Composicao> arrayComposicao = listarTrem.getArrayComposicao();
+                ArrayList<Locomotiva> arrayLocomotivas = listarTrem.getArrayLocomotiva(); 
+                ArrayList<Vagao> arrayVagao = listarTrem.getArrayVagao();
+                for (int i = 0; i < arrayComposicao.size();) {
+                    Composicao composicao = arrayComposicao.get(i);
+                    if (composicao.getQtdVagao() > 0) {
+                        arrayVagao.add(composicao.getVagao(composicao.getQtdVagao() - 1));
+                        composicao.desengataVagao(composicao.getVagao(composicao.getQtdVagao() - 1));
+                        break;
+                    } else {
+                        if (composicao.getQtdLocomotivas() > 1) {
+                            arrayLocomotivas
+                                    .add(composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
+                            composicao.desengataLocomotiva(
+                                    composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
+                            break;
+                        } else {
+                            JOptionPane.showMessageDialog(botaoAdicionarVagao, "ERRO: Não é possível remover a locomotiva inicial!");
+                            break;
+                        }
+                    }
+                }
+            textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao)
+            .toString2(listarTrem.getArrayComposicao(), posicao));
+            }
+        });
             gbc.gridy++;
             add(botaoRemoverUltimo, gbc);
         }
