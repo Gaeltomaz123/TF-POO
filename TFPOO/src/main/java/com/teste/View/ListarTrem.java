@@ -129,5 +129,7 @@ public class ListarTrem extends JPanel {
         return arrayLocomotivas;
     }
 
-    
+    public ArrayList<Vagao>getArrayVagao(){
+        return arrayVagao;
+    }
 }
