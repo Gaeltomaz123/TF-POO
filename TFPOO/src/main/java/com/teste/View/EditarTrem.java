@@ -1,10 +1,19 @@
 package com.teste.View;
 
 import javax.swing.*;
+
+import com.teste.Model.Composicao;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class EditarTrem extends JPanel {
-    public EditarTrem() {
+    int idTrem = 0; 
+    public EditarTrem(ListarTrem listarTrem) {
+        
+
         setBackground(new Color(63, 55, 55));
         setPreferredSize(new Dimension(400, 575));
         setLayout(new GridBagLayout());
@@ -29,40 +38,40 @@ public class EditarTrem extends JPanel {
 
         gbc.gridy++;
 
-        JButton button1 = new JButton("Pesquisar");
+        JButton botaoPesquisar = new JButton("Pesquisar");
 
         textFieldID.setPreferredSize(new Dimension(200, 25));
-        button1.setPreferredSize(new Dimension(200, 25));
+        botaoPesquisar.setPreferredSize(new Dimension(200, 25));
 
         Font font = new Font(Font.SANS_SERIF, Font.BOLD, 12);
 
-        button1.setBorderPainted(false);
-        button1.setFocusPainted(false);
-        button1.setFont(font);
-        button1.setForeground(Color.WHITE);
-        button1.setBackground(new Color(38, 105, 21));
+        botaoPesquisar.setBorderPainted(false);
+        botaoPesquisar.setFocusPainted(false);
+        botaoPesquisar.setFont(font);
+        botaoPesquisar.setForeground(Color.WHITE);
+        botaoPesquisar.setBackground(new Color(38, 105, 21));
         gbc.gridy++;
-        add(button1, gbc);
+        add(botaoPesquisar, gbc);
 
-        JButton button2 = new JButton("Adicionar locomotiva");
-        button2.setPreferredSize(new Dimension(200, 35));
-        button2.setBorderPainted(false);
-        button2.setFocusPainted(false);
-        button2.setFont(font);
-        button2.setForeground(Color.WHITE);
-        button2.setBackground(new Color(99, 98, 98));
+        JButton botaoAdicionarLocomotiva = new JButton("Adicionar locomotiva");
+        botaoAdicionarLocomotiva.setPreferredSize(new Dimension(200, 35));
+        botaoAdicionarLocomotiva.setBorderPainted(false);
+        botaoAdicionarLocomotiva.setFocusPainted(false);
+        botaoAdicionarLocomotiva.setFont(font);
+        botaoAdicionarLocomotiva.setForeground(Color.WHITE);
+        botaoAdicionarLocomotiva.setBackground(new Color(99, 98, 98));
         gbc.gridy++;
-        add(button2, gbc);
+        add(botaoAdicionarLocomotiva, gbc);
 
-        JButton button3 = new JButton("Adicionar vagão");
-        button3.setPreferredSize(new Dimension(200, 35));
-        button3.setBorderPainted(false);
-        button3.setFocusPainted(false);
-        button3.setFont(font);
-        button3.setForeground(Color.WHITE);
-        button3.setBackground(new Color(99, 98, 98));
+        JButton botatoAdicionarVagao = new JButton("Adicionar vagão");
+        botatoAdicionarVagao.setPreferredSize(new Dimension(200, 35));
+        botatoAdicionarVagao.setBorderPainted(false);
+        botatoAdicionarVagao.setFocusPainted(false);
+        botatoAdicionarVagao.setFont(font);
+        botatoAdicionarVagao.setForeground(Color.WHITE);
+        botatoAdicionarVagao.setBackground(new Color(99, 98, 98));
         gbc.gridy++;
-        add(button3, gbc);
+        add(botatoAdicionarVagao, gbc);
 
         gbc.gridy++;
         JLabel labelDis = new JLabel("Disposição:");
@@ -77,5 +86,46 @@ public class EditarTrem extends JPanel {
         JScrollPane scrollPane = new JScrollPane(textAreaDis);
         scrollPane.setPreferredSize(new Dimension(200, 100)); // Tamanho do scroll
         add(scrollPane, gbc);
+
+        botaoPesquisar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                boolean existeNoArray = false;
+                int posicao = -1;
+                // System.out.println(listarTrem.getArrayComposicao().size());
+                idTrem = Integer.parseInt(textFieldID.getText());
+                for(int i = 0; i < listarTrem.getArrayComposicao().size(); i++){
+                    if(listarTrem.getArrayComposicao().get(i).getidComposicao() == idTrem){
+                        existeNoArray = true;
+                        posicao = i;
+                        //arrayComposicao.get(i).toString(arrayComposicao, i)
+                    }else{
+                        existeNoArray = false;
+                    }
+                }
+                if(existeNoArray == false){
+                    JOptionPane.showMessageDialog(labelID, "ERRO: Esse ID não está contido!");
+                }else{
+                    textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao).toString2(listarTrem.getArrayComposicao(),posicao));
+                    JOptionPane.showMessageDialog(labelID, "O id foi encontrado!");
+                }
+                //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
+            }
+        });
+        JButton botaoRemoverUltimo = new JButton("Remover último componente");
+        botaoRemoverUltimo.setPreferredSize(new Dimension(200, 35));
+        botaoRemoverUltimo.setBorderPainted(false);
+        botaoRemoverUltimo.setFocusPainted(false);
+        botaoRemoverUltimo.setFont(font);
+        botaoRemoverUltimo.setForeground(Color.WHITE);
+        botaoRemoverUltimo.setBackground(new Color(244, 24, 18));
+        gbc.gridy++;
+        add(botaoRemoverUltimo, gbc);
+    }
+
+    public void setArrayLocomotivas(Object object) {
+        
+    }
+
+    public void setArrayComposicao(ArrayList<Composicao> arrayComposicao) {
     }
 }

@@ -139,4 +139,30 @@ public class Composicao {
         ;
         System.out.println("..........................");
     }
+
+    public String toString2(ArrayList<Composicao> composicao, int posicao) {
+        StringBuilder result = new StringBuilder();
+    
+        // Recuperar a composição na posição específica
+        Composicao comp = composicao.get(posicao);
+    
+        // Adicionar a representação das locomotivas
+        for (int i = 0; i < comp.getQtdLocomotivas(); i++) {
+            result.append("L").append(i + 1);
+            if (i != comp.getQtdLocomotivas() - 1 || comp.getQtdVagao() > 0) {
+                result.append(",");
+            }
+        }
+    
+        // Adicionar a representação dos vagões
+        for (int i = 0; i < comp.getQtdVagao(); i++) {
+            result.append("V").append(i + 1);
+            if (i != comp.getQtdVagao() - 1) {
+                result.append(",");
+            }
+        }
+    
+        return result.toString();
+    }
+    
 }

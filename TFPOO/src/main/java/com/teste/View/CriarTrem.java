@@ -13,25 +13,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CriarTrem extends JPanel {
-    private ArrayList<Locomotiva> arrayLocomotivas = new ArrayList<Locomotiva>();
-    private ArrayList<Vagao> arrayVagao = new ArrayList<Vagao>();
-    private ArrayList<Composicao> arrayComposicao = new ArrayList<Composicao>();
-
-    public void condicoesIniciais() {
-        for (int i = 0; i < 5; i++) {
-            arrayVagao.add(new Vagao(i, 200, null));
-        }
-        for (int i = 0; i < 3; i++) {
-            arrayLocomotivas.add(new Locomotiva(i, 1000, 10, null));
-        }
-    }
-    public CriarTrem() {
-        condicoesIniciais();
+    ArrayList<Locomotiva> arrayLocomotivas = new ArrayList<Locomotiva>();
+    ArrayList<Vagao> arrayVagao = new ArrayList<Vagao>();
+    ArrayList<Composicao> arrayComposicao = new ArrayList<Composicao>();
+    // private TransicaoTelas transicaoTelas = new TransicaoTelas();
+    //ListarTrem listarTrem;
+    public CriarTrem(ListarTrem listarTrem) {
+        //this.listarTrem = listarTrem;
         setBackground(new Color(63, 55, 55));
         setPreferredSize(new Dimension(400, 575));
         setLayout(new GridBagLayout());
 
-        ImageIcon icon = new ImageIcon("TFPOO\\src\\main\\java\\com\\teste\\Images\\TremIcon.png");
+        ImageIcon icon = new ImageIcon("TFPOO/src/main/java/com/teste/Images/TremIcon.png");
         JLabel labelImagem = new JLabel(icon);
         labelImagem.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -82,7 +75,9 @@ public class CriarTrem extends JPanel {
                     ArrayList<Carro> carro = new ArrayList<Carro>();
                     carro.add(arrayLocomotivas.get(0));
                     arrayComposicao.add(new Composicao(Integer.parseInt(id), carro));
+                    listarTrem.addLine();
                     arrayLocomotivas.remove(0);
+                    System.out.println(carro);
                 } else {
                     JOptionPane.showMessageDialog(labelID, "ERRO: Digite apenas números");
                 }
@@ -92,4 +87,15 @@ public class CriarTrem extends JPanel {
         gbc.gridy++;
         add(button1, gbc);
     }
+    public void setArrayComposicao(ArrayList<Composicao> novoArrayComposicao) {
+        arrayComposicao = novoArrayComposicao;
+    }
+
+    public void setArrayLocomotivas(ArrayList<Locomotiva> novoArrayLocomotivas) {
+        arrayLocomotivas = novoArrayLocomotivas;
+    }
+
+    // public void setArray(ArrayList<Composicao> novoArrayComposicao) {
+    //     arrayComposicao = novoArrayComposicao;
+    // }
 }
