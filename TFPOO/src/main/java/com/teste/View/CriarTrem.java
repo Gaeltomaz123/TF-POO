@@ -70,7 +70,16 @@ public class CriarTrem extends JPanel {
                 
                 //Pop up
                 String id = textFieldID.getText();
-                if (id.matches("[0-9]+")) {
+                boolean check = true;
+                if(id.matches("[0-9]+")) {
+                for(int i=0; i<arrayComposicao.size(); i++) {
+                        if(arrayComposicao.get(i).getidComposicao() == Integer.parseInt(id)) {
+                            check = false;
+                            break;
+                        }
+                    }
+                }
+                if (id.matches("[0-9]+") && check) {
                     JOptionPane.showMessageDialog(labelID, "SUCESSO! TREM CRIADO - ID: " + id);
                     ArrayList<Carro> carro = new ArrayList<Carro>();
                     carro.add(arrayLocomotivas.get(0));
@@ -79,7 +88,11 @@ public class CriarTrem extends JPanel {
                     arrayLocomotivas.remove(0);
                     System.out.println(carro);
                 } else {
-                    JOptionPane.showMessageDialog(labelID, "ERRO: Digite apenas números");
+                    if(check == false) {
+                        JOptionPane.showMessageDialog(labelID, "ERRO: Este ID já está em uso");
+                    } else {
+                        JOptionPane.showMessageDialog(labelID, "ERRO: Digite apenas números");
+                    }
                 }
 
             }
