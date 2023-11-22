@@ -3,7 +3,6 @@ package com.teste.View;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import com.teste.Model.Carro;
 import com.teste.Model.Composicao;
 import com.teste.Model.Locomotiva;
 import com.teste.Model.Vagao;

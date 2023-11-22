@@ -10,9 +10,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class EditarTrem extends JPanel {
+    int posicao = -1;
     int idTrem = 0; 
-    public EditarTrem(ListarTrem listarTrem) {
-        
+    public EditarTrem(ListarTrem listarTrem) {  
 
         setBackground(new Color(63, 55, 55));
         setPreferredSize(new Dimension(400, 575));
@@ -91,7 +91,6 @@ public class EditarTrem extends JPanel {
             //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
             public void actionPerformed(ActionEvent e) {
                 boolean existeNoArray = false;
-                int posicao = -1;
                 // System.out.println(listarTrem.getArrayComposicao().size());
                 idTrem = Integer.parseInt(textFieldID.getText());
                 for(int i = 0; i < listarTrem.getArrayComposicao().size(); i++){
@@ -111,14 +110,22 @@ public class EditarTrem extends JPanel {
                 }
 
             }
-            
         });
-
         botaoAdicionarLocomotiva.addActionListener(new ActionListener() {
-            //RODAR TODO O ARRAY E ACHAR O COM O ID DO LABEL 
-            public void actionPerformed(ActionEvent e) {
+            //PEGAR A POSIÇÃO E ADICIONAR NELA UMA LOCOMOTIVA
+            //LEMBRAR DE USAR O SETTEXT DENOVO 
+            public void actionPerformed(ActionEvent e) {    
+                if(listarTrem.getArrayLocomotiva().size() > 1){ //MAIOR QUE UM PRA NÃO CRASHAR O PROGRAMA!!!
+                listarTrem.getArrayComposicao().get(posicao).engataLocomotiva(listarTrem.getArrayLocomotiva().get(0));
+                listarTrem.getArrayLocomotiva().remove(0);
+                textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao).toString2(listarTrem.getArrayComposicao(),posicao));
+                // System.out.println(listarTrem.getArrayLocomotiva().size());
+                }else{
+                    JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais locomotivas disponíveis!");
+                }
             }
         });
+
         JButton botaoRemoverUltimo = new JButton("Remover último componente");
         botaoRemoverUltimo.setPreferredSize(new Dimension(200, 35));
         botaoRemoverUltimo.setBorderPainted(false);
