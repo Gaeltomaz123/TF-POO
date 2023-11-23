@@ -165,7 +165,7 @@ import java.awt.event.ActionEvent;
             botaoRemoverUltimo.setForeground(Color.WHITE);
             botaoRemoverUltimo.setBackground(new Color(244, 24, 18));
             botaoRemoverUltimo.addActionListener(new ActionListener() {
-             public void actionPerformed(ActionEvent e) {  
+            public void actionPerformed(ActionEvent e) {  
                 ArrayList<Composicao> arrayComposicao = listarTrem.getArrayComposicao();
                 ArrayList<Locomotiva> arrayLocomotivas = listarTrem.getArrayLocomotiva(); 
                 ArrayList<Vagao> arrayVagao = listarTrem.getArrayVagao();
@@ -193,6 +193,7 @@ import java.awt.event.ActionEvent;
                 }
             textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao)
             .toString2(listarTrem.getArrayComposicao(), posicao));
+            listarTrem.editLine(posicao);
             }
         });
             gbc.gridy++;

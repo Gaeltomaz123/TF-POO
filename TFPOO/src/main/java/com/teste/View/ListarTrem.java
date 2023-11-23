@@ -18,7 +18,6 @@ public class ListarTrem extends JPanel {
     private ArrayList<Locomotiva> arrayLocomotivas = new ArrayList<Locomotiva>();
     private ArrayList<Vagao> arrayVagao = new ArrayList<Vagao>();
     private ArrayList<Composicao> arrayComposicao = new ArrayList<Composicao>();
-    private ArrayList<JPanel> containers = new ArrayList<JPanel>();
     GridBagConstraints gbc = new GridBagConstraints();
     JPanel contentPanel = new JPanel(new GridBagLayout());
 
@@ -55,7 +54,14 @@ public class ListarTrem extends JPanel {
         addLine(contentPanel, gbc, arrayComposicao.size()-1);
     }
     public void editLine(int posicao) {
-        
+        Component[] a = contentPanel.getComponents();
+        JPanel b = (JPanel)a[posicao];
+        JPanel inner = (JPanel)b.getComponent(0);
+        Component[] componentes = inner.getComponents();
+        JLabel vagoes = (JLabel)componentes[3];
+        vagoes.setText("Vagões: " + arrayComposicao.get(posicao).getQtdVagao());
+        JLabel locomotivas = (JLabel)componentes[5];
+        locomotivas.setText("Locomotivas: " + arrayComposicao.get(posicao).getQtdLocomotivas());
     }
 
     private void addLine(JPanel contentPanel, GridBagConstraints gbc, int i) {
