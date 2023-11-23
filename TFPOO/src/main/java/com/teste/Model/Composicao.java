@@ -148,7 +148,7 @@ public class Composicao {
     
         // Adicionar a representação das locomotivas
         for (int i = 0; i < comp.getQtdLocomotivas(); i++) {
-            result.append("L").append(i + 1);
+            result.append("L").append(getLocomotiva(i).getIdLocomotiva());
             if (i != comp.getQtdLocomotivas() - 1 || comp.getQtdVagao() > 0) {
                 result.append(",");
             }
@@ -156,7 +156,7 @@ public class Composicao {
     
         // Adicionar a representação dos vagões
         for (int i = 0; i < comp.getQtdVagao(); i++) {
-            result.append("V").append(i + 1);
+            result.append("V").append(getVagao(i).getIdVagao());
             if (i != comp.getQtdVagao() - 1) {
                 result.append(",");
             }

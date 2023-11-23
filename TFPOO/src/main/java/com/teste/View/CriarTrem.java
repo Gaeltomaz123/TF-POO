@@ -66,11 +66,17 @@ public class CriarTrem extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                
-                
                 //Pop up
                 String id = textFieldID.getText();
                 boolean check = true;
+                boolean naoExisteLocomotiva = false;
+                for(int j = 0; j<arrayLocomotivas.size(); j++){
+                    System.out.println(arrayLocomotivas.get(j).getIdLocomotiva());
+                    System.out.println(arrayLocomotivas.size());
+                    if(arrayLocomotivas.size() == 1){
+                        naoExisteLocomotiva = true;
+                    }
+                }
                 if(id.matches("[0-9]+")) {
                 for(int i=0; i<arrayComposicao.size(); i++) {
                         if(arrayComposicao.get(i).getidComposicao() == Integer.parseInt(id)) {
@@ -79,7 +85,8 @@ public class CriarTrem extends JPanel {
                         }
                     }
                 }
-                if (id.matches("[0-9]+") && check) {
+                if(naoExisteLocomotiva == false){
+                if (id.matches("[0-9]+") && check){
                     JOptionPane.showMessageDialog(labelID, "SUCESSO! TREM CRIADO - ID: " + id);
                     ArrayList<Carro> carro = new ArrayList<Carro>();
                     carro.add(arrayLocomotivas.get(0));
@@ -93,6 +100,10 @@ public class CriarTrem extends JPanel {
                     } else {
                         JOptionPane.showMessageDialog(labelID, "ERRO: Digite apenas números");
                     }
+                }
+            }
+                if(naoExisteLocomotiva == true){
+                    JOptionPane.showMessageDialog(labelID, "ERRO: Não há mais locomotivas!");
                 }
 
             }
