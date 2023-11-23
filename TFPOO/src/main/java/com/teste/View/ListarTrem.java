@@ -87,17 +87,21 @@ public class ListarTrem extends JPanel {
         JLabel labelVagoes = new JLabel("Vagões: " + numVagoes);
         JLabel labelLocomotivas = new JLabel("Locomotivas: " + numLocomotivas);
 
-        ImageIcon lixeiraIcon = new ImageIcon("TFPOO/src/main/java/com/teste/Images/IconLixeira.png");
+        ImageIcon lixeiraIcon = new ImageIcon("TFPOO/src/main/java/com/teste/Images/lixo1.png");
         JLabel labelLixeira = new JLabel(lixeiraIcon);
 
         labelLixeira.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                for (int i = 0; i < getArrayComposicao().size(); i++) {
-                    if (getArrayComposicao().get(i).getidComposicao() == idTrem) {
-                        arrayComposicao.remove(i);
-                    }
+                Composicao compoiscao = arrayComposicao.get(i);
+                System.out.println(compoiscao.toString());
+                for (int i = 0; i < compoiscao.getQtdLocomotivas(); i++) {
+                    arrayLocomotivas.add(compoiscao.getLocomotiva(i));
                 }
+                for (int i = 0; i < compoiscao.getQtdVagao(); i++) {
+                    arrayVagao.add(compoiscao.getVagao(i));
+                }
+                arrayComposicao.remove(compoiscao);
                 containerTrem.remove(innerPanel); // Oculta o container do trem
                 trensDeletados++; // Incrementa o contador de trens deletados
                 contentPanel.remove(containerTrem); // Remove o containerTrem do contentPanel
@@ -113,7 +117,7 @@ public class ListarTrem extends JPanel {
         innerPanel.add(labelVagoes);
         innerPanel.add(Box.createRigidArea(new Dimension(120, 0))); // Espaçamento entre os labels
         innerPanel.add(labelLocomotivas);
-        innerPanel.add(Box.createRigidArea(new Dimension(120, 0))); // Espaçamento entre os labels
+        innerPanel.add(Box.createRigidArea(new Dimension(200, 0))); // Espaçamento entre os labels
         innerPanel.add(labelLixeira);
         containerTrem.add(innerPanel);
         contentPanel.add(containerTrem, gbc); // Adiciona o container do trem ao painel de conteúdo

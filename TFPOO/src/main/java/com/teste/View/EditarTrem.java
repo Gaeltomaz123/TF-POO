@@ -102,8 +102,6 @@ import java.awt.event.ActionEvent;
                             existeNoArray = true;
                             posicao = i;
                             // arrayComposicao.get(i).toString(arrayComposicao, i)
-                        } else {
-                            existeNoArray = false;
                         }
                     }
                     if (existeNoArray == false) {
@@ -121,7 +119,22 @@ import java.awt.event.ActionEvent;
                 // PEGAR A POSIÇÃO E ADICIONAR NELA UMA LOCOMOTIVA
                 // LEMBRAR DE USAR O SETTEXT DENOVO
                 public void actionPerformed(ActionEvent e) {
-                    if (adicionouVagao == false) {
+                    ArrayList<Composicao> arrayComposicao = listarTrem.getArrayComposicao();
+                    ArrayList<Locomotiva> arrayLocomotivas = listarTrem.getArrayLocomotiva();
+                        if(arrayLocomotivas.size() > 1) {
+                            if (arrayComposicao.get(posicao).getQtdVagao() == 0) {
+                            arrayComposicao.get(posicao).engataLocomotiva(arrayLocomotivas.get(0));
+                            arrayLocomotivas.remove(0);
+                            textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao).toString2(listarTrem.getArrayComposicao(), posicao));
+                            listarTrem.editLine(posicao);
+                            } else {
+                                JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não é possível adicionar vagão após locomotiva!");
+                            }
+                        } else {
+                           JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais locomotivas disponíveis!"); 
+                        }
+                        
+                    /*if (adicionouVagao == false) {
                         if (listarTrem.getArrayLocomotiva().size() > 1) { // MAIOR QUE UM PRA NÃO CRASHAR O PROGRAMA!!!
                             listarTrem.getArrayComposicao().get(posicao)
                                     .engataLocomotiva(listarTrem.getArrayLocomotiva().get(0));
@@ -135,7 +148,7 @@ import java.awt.event.ActionEvent;
                         }
                     } else {
                         JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não é possível adicionar vagão após locomotiva!");
-                    }
+                    }*/
                 }
             });
 
@@ -169,26 +182,19 @@ import java.awt.event.ActionEvent;
                 ArrayList<Composicao> arrayComposicao = listarTrem.getArrayComposicao();
                 ArrayList<Locomotiva> arrayLocomotivas = listarTrem.getArrayLocomotiva(); 
                 ArrayList<Vagao> arrayVagao = listarTrem.getArrayVagao();
-                for (int i = 0; i < arrayComposicao.size();) {
-                    Composicao composicao = arrayComposicao.get(i);
-                    if(composicao.getQtdVagao() == 1){
-                        adicionouVagao = false;
-                    }
-                    if (composicao.getQtdVagao() > 0) {
-                        arrayVagao.add(composicao.getVagao(composicao.getQtdVagao() - 1));
-                        composicao.desengataVagao(composicao.getVagao(composicao.getQtdVagao() - 1));
-                        break;
+                Composicao composicao = arrayComposicao.get(posicao);
+                if(composicao.getQtdVagao() == 1){
+                    adicionouVagao = false;
+                }
+                if (composicao.getQtdVagao() > 0) {
+                    arrayVagao.add(composicao.getVagao(composicao.getQtdVagao() - 1));
+                    composicao.desengataVagao(composicao.getVagao(composicao.getQtdVagao() - 1));
+                } else {
+                    if (composicao.getQtdLocomotivas() > 1) {
+                        arrayLocomotivas.add(composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
+                        composicao.desengataLocomotiva(composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
                     } else {
-                        if (composicao.getQtdLocomotivas() > 1) {
-                            arrayLocomotivas
-                                    .add(composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
-                            composicao.desengataLocomotiva(
-                                    composicao.getLocomotiva(composicao.getQtdLocomotivas() - 1));
-                            break;
-                        } else {
-                            JOptionPane.showMessageDialog(botaoAdicionarVagao, "ERRO: Não é possível remover a locomotiva inicial!");
-                            break;
-                        }
+                        JOptionPane.showMessageDialog(botaoAdicionarVagao, "ERRO: Não é possível remover a locomotiva inicial!");
                     }
                 }
             textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao)
