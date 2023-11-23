@@ -34,7 +34,7 @@ public class ListarTrem extends JPanel {
         contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setBackground(new Color(63, 55, 55));
 //        GridBagConstraints gbc = new GridBagConstraints();
-         gbc = new GridBagConstraints();
+        gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NORTH;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -83,6 +83,11 @@ public class ListarTrem extends JPanel {
         labelLixeira.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                for (int i = 0; i < getArrayComposicao().size(); i++) {
+                    if (getArrayComposicao().get(i).getidComposicao() == idTrem) {
+                        arrayComposicao.remove(i);
+                    }
+                }
                 containerTrem.remove(innerPanel); // Oculta o container do trem
                 trensDeletados++; // Incrementa o contador de trens deletados
                 contentPanel.remove(containerTrem); // Remove o containerTrem do contentPanel

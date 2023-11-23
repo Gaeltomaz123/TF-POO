@@ -78,7 +78,7 @@ public class Composicao {
             }
         }
         for (Locomotiva locomotiva : locomotivas) {
-            if (locomotiva.getPesoMaximo() > 0) {
+            // if (locomotiva.getPesoMaximo() > 0) {
                 estado = true;
                 double capacidadeAtual = locomotiva.getPesoMaximo();
                 double novaCapacidade = capacidadeAtual - 400;
@@ -89,10 +89,10 @@ public class Composicao {
                 locomotiva.setPesoMaximo(novaCapacidade);
                 System.out.println(
                         "Locomotiva ID: " + locomotiva.getIdLocomotiva() + ", Capacidade Atual: " + novaCapacidade);
-            } else {
-                estado = false;
-                System.out.println("O peso foi excedido!");
-            }
+            // } else {
+            //     estado = false;
+            //     System.out.println("O peso foi excedido!");
+            // }
         }
         if (estado == true) {
             arrayCarro.add(vagao);
