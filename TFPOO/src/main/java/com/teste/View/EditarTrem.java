@@ -171,6 +171,9 @@ import java.awt.event.ActionEvent;
                 ArrayList<Vagao> arrayVagao = listarTrem.getArrayVagao();
                 for (int i = 0; i < arrayComposicao.size();) {
                     Composicao composicao = arrayComposicao.get(i);
+                    if(composicao.getQtdVagao() == 1){
+                        adicionouVagao = false;
+                    }
                     if (composicao.getQtdVagao() > 0) {
                         arrayVagao.add(composicao.getVagao(composicao.getQtdVagao() - 1));
                         composicao.desengataVagao(composicao.getVagao(composicao.getQtdVagao() - 1));
