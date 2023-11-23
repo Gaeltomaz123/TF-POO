@@ -129,7 +129,7 @@ import java.awt.event.ActionEvent;
                             textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao)
                                     .toString2(listarTrem.getArrayComposicao(), posicao));
                             // System.out.println(listarTrem.getArrayLocomotiva().size());
-                            listarTrem.addLine();
+                            listarTrem.editLine(posicao);
                         } else {
                             JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais locomotivas disponíveis!");
                         }
@@ -149,7 +149,7 @@ import java.awt.event.ActionEvent;
                         textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao)
                                 .toString2(listarTrem.getArrayComposicao(), posicao));
                         adicionouVagao = true;
-                        listarTrem.addLine();
+                        listarTrem.editLine(posicao);
                         // System.out.println(listarTrem.getArrayLocomotiva().size());
                     } else {
                         JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais vagões disponíveis!");

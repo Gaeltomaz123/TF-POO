@@ -18,6 +18,7 @@ public class ListarTrem extends JPanel {
     private ArrayList<Locomotiva> arrayLocomotivas = new ArrayList<Locomotiva>();
     private ArrayList<Vagao> arrayVagao = new ArrayList<Vagao>();
     private ArrayList<Composicao> arrayComposicao = new ArrayList<Composicao>();
+    private ArrayList<JPanel> containers = new ArrayList<JPanel>();
     GridBagConstraints gbc = new GridBagConstraints();
     JPanel contentPanel = new JPanel(new GridBagLayout());
 
@@ -52,6 +53,9 @@ public class ListarTrem extends JPanel {
     }
     public void addLine() {
         addLine(contentPanel, gbc, arrayComposicao.size()-1);
+    }
+    public void editLine(int posicao) {
+        
     }
 
     private void addLine(JPanel contentPanel, GridBagConstraints gbc, int i) {
@@ -105,7 +109,6 @@ public class ListarTrem extends JPanel {
         innerPanel.add(labelLocomotivas);
         innerPanel.add(Box.createRigidArea(new Dimension(120, 0))); // Espaçamento entre os labels
         innerPanel.add(labelLixeira);
-
         containerTrem.add(innerPanel);
         contentPanel.add(containerTrem, gbc); // Adiciona o container do trem ao painel de conteúdo
         gbc.gridy++; // Incrementa a coordenada Y para o próximo trem
