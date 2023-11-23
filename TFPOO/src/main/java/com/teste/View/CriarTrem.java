@@ -71,8 +71,6 @@ public class CriarTrem extends JPanel {
                 boolean check = true;
                 boolean naoExisteLocomotiva = false;
                 for(int j = 0; j<arrayLocomotivas.size(); j++){
-                    System.out.println(arrayLocomotivas.get(j).getIdLocomotiva());
-                    System.out.println(arrayLocomotivas.size());
                     if(arrayLocomotivas.size() == 1){
                         naoExisteLocomotiva = true;
                     }
@@ -93,7 +91,7 @@ public class CriarTrem extends JPanel {
                     arrayComposicao.add(new Composicao(Integer.parseInt(id), carro));
                     listarTrem.addLine();
                     arrayLocomotivas.remove(0);
-                    System.out.println(carro);
+                    //System.out.println(carro);
                 } else {
                     if(check == false) {
                         JOptionPane.showMessageDialog(labelID, "ERRO: Este ID já está em uso");

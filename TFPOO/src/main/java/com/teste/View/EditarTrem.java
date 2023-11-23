@@ -77,6 +77,16 @@ import java.awt.event.ActionEvent;
             gbc.gridy++;
             add(botaoAdicionarVagao, gbc);
 
+            JButton botaoMostrarInfo = new JButton("Listar garagem");
+            botaoMostrarInfo.setPreferredSize(new Dimension(200, 35));
+            botaoMostrarInfo.setBorderPainted(false);
+            botaoMostrarInfo.setFocusPainted(false);
+            botaoMostrarInfo.setFont(font);
+            botaoMostrarInfo.setForeground(Color.WHITE);
+            botaoMostrarInfo.setBackground(new Color(99, 98, 98));
+            gbc.gridy++;
+            add(botaoMostrarInfo, gbc);
+
             gbc.gridy++;
             JLabel labelDis = new JLabel("Disposição:");
             labelDis.setForeground(Color.white);
@@ -128,7 +138,7 @@ import java.awt.event.ActionEvent;
                             textAreaDis.setText(listarTrem.getArrayComposicao().get(posicao).toString2(listarTrem.getArrayComposicao(), posicao));
                             listarTrem.editLine(posicao);
                             } else {
-                                JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não é possível adicionar vagão após locomotiva!");
+                                JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não é possível adicionar locomotiva após vagão!");
                             }
                         } else {
                            JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais locomotivas disponíveis!"); 
@@ -167,6 +177,15 @@ import java.awt.event.ActionEvent;
                     } else {
                         JOptionPane.showMessageDialog(botaoAdicionarVagao, "Não há mais vagões disponíveis!");
                     }
+                }
+            });
+
+            botaoMostrarInfo.addActionListener(new ActionListener() {
+                // PEGAR A POSIÇÃO E ADICIONAR NELA UMA LOCOMOTIVA
+                // LEMBRAR DE USAR O SETTEXT DENOVO
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(listarTrem.getQtdLocomotivas());
+                    JOptionPane.showMessageDialog(botaoAdicionarVagao, "Quantidade locomotivas: "+listarTrem.getQtdLocomotivas()+"\nQuantidade vagões: "+listarTrem.getQtdVagoes());
                 }
             });
 

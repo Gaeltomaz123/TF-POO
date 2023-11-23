@@ -150,4 +150,11 @@ public class ListarTrem extends JPanel {
     public ArrayList<Vagao>getArrayVagao(){
         return arrayVagao;
     }
+
+    public int getQtdLocomotivas(){
+        return arrayLocomotivas.size();
+    }
+    public int getQtdVagoes() {
+        return arrayVagao.size();
+    }
 }
