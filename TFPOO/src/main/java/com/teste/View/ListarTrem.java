@@ -98,28 +98,25 @@ public class ListarTrem extends JPanel {
 
     public void escreverComposicao() {
         String composicoes = "TFPOO/src/main/java/com/teste/Model/Composicoes.csv";
-        //try { 
-                
-                // Abre o escritor para adicionar dados ao arquivo
-                //BufferedWriter escritor = new BufferedWriter(new FileWriter(composicoes));
-                /*if(caminho == "TFPOO/src/main/java/com/teste/Model/Locomotivas.csv") {
-                    for(int i=0; i<arrayLocomotivas.size(); i++) {
-                    escritor.write("L" + i);
+        
+        try { 
+            BufferedWriter escritor = new BufferedWriter(new FileWriter(composicoes));
+                for(int i=0; i<arrayComposicao.size(); i++) {
+                    escritor.write("T" + i);
+                    for(int j=0; j<arrayComposicao.get(i).getQtdLocomotivas(); j++){
+                        escritor.write(", L" + j);
+                    }
+                    for(int f=0; f<arrayComposicao.get(i).getQtdVagao(); f++){
+                        escritor.write(", V" + f);
+                    }
                     escritor.newLine();
-                }
-                
-                }
-                if(caminho == "TFPOO/src/main/java/com/teste/Model/Vagoes.csv") {
-                    for(int i=0; i<arrayVagao.size(); i++) {
-                    escritor.write("V" + i);
-                    escritor.newLine();
-                }
                 }
                 escritor.flush();
                 escritor.close();
                 } catch (IOException a) {
                     a.printStackTrace();
-                } */
+                } 
+
     }
 
     public void lerComposicoes() {

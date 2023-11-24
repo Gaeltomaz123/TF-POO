@@ -1,2 +1,3 @@
-T0, L, L, V
-T1, L, L, V, V
+T0, L0, L1, V0
+T1, L0, L1, V0, V1, V2
+T2, L0
