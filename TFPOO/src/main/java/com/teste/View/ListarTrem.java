@@ -32,13 +32,8 @@ public class ListarTrem extends JPanel {
     JPanel contentPanel = new JPanel(new GridBagLayout());
 
     public ListarTrem() {
-        String locomotivas = "TFPOO/src/main/java/com/teste/Model/Locomotivas.csv"; 
-        String vagoes = "TFPOO/src/main/java/com/teste/Model/Vagoes.csv";  
-
-        lerLinhas(locomotivas);
-        lerLinhas(vagoes);
-        lerComposicoes();
-
+        
+        
         setLayout(new BorderLayout());
         //JPanel contentPanel = new JPanel(new GridBagLayout());
         contentPanel = new JPanel(new GridBagLayout());
@@ -49,11 +44,21 @@ public class ListarTrem extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
 
+        addButtonSave(contentPanel, gbc);
+
+        String locomotivas = "TFPOO/src/main/java/com/teste/Model/Locomotivas.csv"; 
+        String vagoes = "TFPOO/src/main/java/com/teste/Model/Vagoes.csv";  
+
+        lerLinhas(locomotivas);
+        lerLinhas(vagoes);
+        lerComposicoes();
+
+
         for (int i = 0; i < arrayComposicao.size(); i++) {
             addLine(contentPanel, gbc, i);
         }
 
-        addButtonSave(contentPanel, gbc);
+        
 
         JScrollPane scrollPane = new JScrollPane(contentPanel); // JScrollPane para o conteúdo
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -64,11 +69,11 @@ public class ListarTrem extends JPanel {
     }
 
     private void addButtonSave(JPanel contentPanel, GridBagConstraints gbc) {
-        JPanel innerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        /*JPanel innerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         innerPanel.setPreferredSize(new Dimension(150, 30));
         innerPanel.setMaximumSize(new Dimension(150, 25));
         innerPanel.setMinimumSize(new Dimension(150, 25));
-        innerPanel.setBackground(new Color(38, 105, 21));
+        innerPanel.setBackground(new Color(38, 105, 21));*/
 
         JButton labelsave = new JButton("Salvar");
         labelsave.setForeground(Color.WHITE);
@@ -91,8 +96,8 @@ public class ListarTrem extends JPanel {
                 escreverComposicao();
             }
     });
-        innerPanel.add(labelsave);
-        contentPanel.add(innerPanel, gbc);
+        //innerPanel.add(labelsave);
+        contentPanel.add(labelsave, gbc);
         gbc.gridy++; 
     }
 
