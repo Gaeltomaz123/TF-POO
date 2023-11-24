@@ -22,12 +22,6 @@ public class ListarTrem extends JPanel {
     JPanel contentPanel = new JPanel(new GridBagLayout());
 
     public ListarTrem() {
-        for (int i = 0; i < 6; i++) {
-            arrayVagao.add(new Vagao(i, 200, null));
-        }
-        for (int i = 0; i < 6; i++) {
-            arrayLocomotivas.add(new Locomotiva(i, 1000, 10, null));
-        }
 
         setLayout(new BorderLayout());
         //JPanel contentPanel = new JPanel(new GridBagLayout());
